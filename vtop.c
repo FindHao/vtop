@@ -6,6 +6,8 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <stdint.h>
+#include <stdint-gcc.h>
+#include <inttypes.h>
 
 // ORIG_BUFFER will be placed in memory and will then be changed to NEW_BUFFER
 // They must be the same length
@@ -37,7 +39,7 @@ int main(void) {
 
    // Determine how far to seek into memory to find the buffer
    uint64_t offset = (page_frame_number << PAGE_SHIFT) + distance_from_page_boundary;
-
+    printf("physical address \t %"PRIu64"\n", offset);
    // Open /dev/mem, seek the calculated offset, and
    // map it into memory so we can manipulate it
    // CONFIG_STRICT_DEVMEM must be disabled for this
